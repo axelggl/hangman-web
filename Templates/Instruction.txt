@@ -1,0 +1,3 @@
+Get permet de récupérer, 
+
+Post : Envoyer des donners aux serveyrn 

@@ -1,8 +1,18 @@
 
 
 """"""""""""""""Post It """"""""""""""""
+
 Get permet de récupérer les requêtes, 
 
 Post : d'Envoyer des donners aux serveur
 
-"""""""""""""""""""""""""""""""""""""""""
+Ecrire du code en go, et qui modifie le htlm
+
+
+Envoie une réponse HTML - la page principale, elle affichera essentiellement votre interface. 
+
+""""""""""""""""""""""""""""""""""""""""" 
+
+
+
+IDée css https://freefrontend.com/css-animated-backgrounds/

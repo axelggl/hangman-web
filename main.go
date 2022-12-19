@@ -3,15 +3,21 @@ package main
 import (
 	"html/template"
 	"net/http"
+	"hangman-classic"
+	
 )
 
+func main (){
+	
+}
 type Page struct {
 	Valeur string
+	
 }
 
 var templates = template.Must(template.ParseFiles("index.html"))
 
-func main() {
+func a() {
 	http.HandleFunc("/home", homeHandler)
 	http.ListenAndServe(":9999", nil)
 }

@@ -16,3 +16,6 @@ Envoie une réponse HTML - la page principale, elle affichera essentiellement vo
 
 
 IDée css https://freefrontend.com/css-animated-backgrounds/
+
+
+Objectif : prendre le code est essayer d'importer les functions dans hangman web

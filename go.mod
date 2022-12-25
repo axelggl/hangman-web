@@ -1,4 +1,4 @@
-module ytrack.learn.ynov.com/git/maxel/hangman-web.git
+module hangman_web
 
 go 1.19
 

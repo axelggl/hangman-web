@@ -1,18 +1,18 @@
 package main
 
 import (
-	"html/template"
-	"net/http"
-	"hangman-classic"
-	
+//	"html/template"
+//	"net/http"
+"fmt"
+"hangman-classic"
 )
 
-func main(){
-	hangman.hangmanmain()
+func main() {
+	fmt.Println("Hello, Module!")
 }
+/*
 type Page struct {
 	Valeur string
-	
 }
 
 var templates = template.Must(template.ParseFiles("index.html"))
@@ -33,3 +33,4 @@ func homeHandler(w http.ResponseWriter, r *http.Request) {
 func postApi(w http.ResponseWriter, r *http.Request) {
 
 }
+*/

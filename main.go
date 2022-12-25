@@ -7,8 +7,8 @@ import (
 	
 )
 
-func main (){
-	
+func main(){
+	hangman.hangmanmain()
 }
 type Page struct {
 	Valeur string

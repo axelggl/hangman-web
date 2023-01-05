@@ -1,15 +1,9 @@
 package main
+import "hangman-classico"
 
-import (
-//	"html/template"
-//	"net/http"
-"fmt"
-"hangman-classic"
-)
-
-func main() {
-	fmt.Println("Hello, Module!")
-}
+func main(){
+		
+		}
 /*
 type Page struct {
 	Valeur string
@@ -19,7 +13,7 @@ var templates = template.Must(template.ParseFiles("index.html"))
 
 func a() {
 	http.HandleFunc("/home", homeHandler)
-	http.ListenAndServe(":9999", nil)
+	http.ListenAndServe(<":9999", nil)
 }
 
 func homeHandler(w http.ResponseWriter, r *http.Request) {

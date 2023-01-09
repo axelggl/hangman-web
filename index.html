@@ -10,7 +10,10 @@
 <body>
 	<h1>Hangman Web </h1>
 	<button class="float-button">Cliquez ici</button>
-	Entrez une lettre : "{{ .Valeur }}"
-	
+	<p>Le mot a deviné : </p>
+	<p> "{{ .Valeur }}"<p>
+	<form action="" method="post"></form>
+		<label for="lettre">Entrez une lettre</label>
+	<input type="text" whatlettre:="lettre" id="lettre"></input>
 </body>
 </html>

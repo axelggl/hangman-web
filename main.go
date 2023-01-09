@@ -28,7 +28,7 @@ func homeHandler(w http.ResponseWriter, r *http.Request) { // envoie une requêt
 	fmt.Println(word)
 	p := Page{Valeur: hangman_classic.CreateWord(word)}
 
-	err := templates.ExecuteTemplate(w, "index.html", p) // prépare la réponse 
+	err := templates.ExecuteTemplate(w, "index.html", p) // prépare la réponse
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}

@@ -1,7 +1,5 @@
-module Hangman_web
+module hangman-web
 
 go 1.19
 
-replace hangman-classico => ../hangman_classic_for_students
-
-require hangman-classico v0.0.0-00010101000000-000000000000
+require github.com/sinjin314/hangman-classic v0.0.0-20230105113003-cef754b2fbdc // indirect

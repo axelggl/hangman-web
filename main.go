@@ -16,23 +16,23 @@ var templates = template.Must(template.ParseFiles("index.html")) // utiliser pou
 
 func main() { // gestion URL
 	hangman_classic.Clear()
-	word := openWordsList()
-	fmt.Println(word)
+
+	fmt.Println("bonjours")
 	http.HandleFunc("/home", homeHandler) // lui dit : L'url pour envoyer la req—uette
 	http.ListenAndServe(":8080", nil)     // demarre un serveur http sur le port 8080
-
 }
-func homeHandler(w http.ResponseWriter, r *http.Request) { // envoie une requête a /home, crée avec la struc Page et est modif avec A
-	word := openWordsList()
 
-	fmt.Println(word)
-	p := Page{Valeur: hangman_classic.CreateWord(word)}
+func homeHandler(w http.ResponseWriter, r *http.Request) { // envoie une requête a /home, et crée avec la struc Page et est modif avec A
+	word := openWordsList()
+	word_hide := hangman_classic.CreateWord(word)
+	p := Page{Valeur: word_hide}
 
 	err := templates.ExecuteTemplate(w, "index.html", p) // prépare la réponse
 	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-	}
-}
-func postApi(w http.ResponseWriter, r *http.Request) {
 
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		fmt.Fprintf(w, "ParseForm() err: %v", err) // gere les erreurs
+	}
+	name := r.FormValue("name") // attribue la variable au formulaire name
+	fmt.Println(name)
 }

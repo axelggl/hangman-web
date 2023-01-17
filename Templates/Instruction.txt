@@ -19,3 +19,15 @@ IDée css https://freefrontend.com/css-animated-backgrounds/
 
 
 Objectif : prendre le code est essayer d'importer les functions dans hangman web
+
+
+
+
+
+
+IDée
+Ajoutez une fonction pour vérifier si le mot à deviner a déjà été deviné dans une partie précédente pour éviter de jouer plusieurs fois au même mot.
+Ajoutez une fonction pour sauvegarder les scores et les statistiques pour chaque joueur.
+Ajoutez la possibilité de choisir la difficulté du jeu en sélectionnant un nombre différent d'essais autorisés pour deviner le mot.
+Ajoutez une fonction pour afficher les lettres déjà utilisées et les mots déjà devinés.
+Ajoutez des fonctions pour gérer les entrées utilisateur pour éviter les erreurs (comme la saisie d'un caractère qui n'est pas une lettre).

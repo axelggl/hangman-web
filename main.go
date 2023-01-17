@@ -8,6 +8,10 @@ import (
 	hangman_classic "github.com/sinjin314/hangman-classic"
 )
 
+var wordtoFind string // Attention a utiliser précotioneusement car si 2 joueurs jouent en meme temps il verront ce que font les autres.
+var word string
+var usedLetter []string
+
 type Page struct {
 	Valeur string
 }
@@ -15,18 +19,23 @@ type Page struct {
 var templates = template.Must(template.ParseFiles("index.html")) // utiliser pour parser (analyse le contenu du fichier)
 
 func main() { // gestion URL
-	fmt.Println("bonjour")
-	u := openWordsList()
-	test := hangman_classic.CreateWord(u)
-	fmt.Println(test)
+	fmt.Println("avant handle")
+	word := openWordsList()
+	wordtoFind = hangman_classic.CreateWord(word)
 
 	http.HandleFunc("/home", homeHandler) // utilise func homeHandler pour accèder a l'url /home
 	http.ListenAndServe(":8080", nil)     // ecoute sur le port 8080,  est un gestionnaire de route
+	fmt.Println("après handle")
 }
 
+/*
+#######################################################
+#		⬇ GERE LES DEMANDES DE L'UTILISATEUR         #
+######################################################
+*/
 func homeHandler(w http.ResponseWriter, r *http.Request) { // gère les routes de l'application en indiquant à l'application que lorsque l'utilisateur accède à l'URL "/home", la fonction homeHandler doit être utilisée pour gérer sa demande.
 
-	p := Page{Valeur: hangman_classic.CreateWord(openWordsList())}
+	p := Page{Valeur: wordtoFind}
 	err := templates.ExecuteTemplate(w, "index.html", p) // prépare la réponse
 	if err != nil {
 
@@ -34,5 +43,10 @@ func homeHandler(w http.ResponseWriter, r *http.Request) { // gère les routes d
 		fmt.Fprintf(w, "ParseForm() err: %v", err) // gere les erreurs
 	}
 	Letter := r.FormValue("Letter") // attribue la variable au formulaire name
-	fmt.Println(Letter)
+	//fmt.Println(Letter)
+
+	usedLetter = append(usedLetter, Letter)
+	fmt.Println("pendant handle")
+	hangman_classic.IsInputOk(Letter, word, wordtoFind, &usedLetter) // & permet d'utiliser un pointeur pour avoir les lettres dans tout le programme
+
 }

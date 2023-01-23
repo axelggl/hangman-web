@@ -8,7 +8,7 @@ import (
 	hangman_classic "github.com/sinjin314/hangman-classic"
 )
 
-var wordtoFind string // Attention a utiliser précotioneusement car si 2 joueurs jouent en meme temps il verront ce que font les autres.
+var wordtoFind string // Attention à utiliser précausionneusement car si 2 joueurs jouent en même temps il verront ce que font les autres.
 var word string
 var usedLetter []string
 
@@ -51,4 +51,10 @@ func homeHandler(w http.ResponseWriter, r *http.Request) { // gère les routes d
 	usedLetter = append(usedLetter, Letter)
 
 	hangman_classic.IsInputOk(Letter, word, wordtoFind, &usedLetter) // & permet d'utiliser un pointeur pour avoir les lettres dans tout le programme
+<<<<<<< HEAD
+=======
+	fmt.Println(Letter)
+	fmt.Println(word)
+	fmt.Println(wordtoFind)
+>>>>>>> 52dd97a8f3d8553e7951a65676839f7fb6dc9bde
 }

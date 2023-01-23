@@ -21,11 +21,12 @@ var templates = template.Must(template.ParseFiles("index.html")) // utiliser pou
 func main() { // gestion URL
 
 	word := openWordsList()
+	fmt.Println(word)
 	wordtoFind = hangman_classic.CreateWord(word)
-	fmt.Println(wordtoFind)
-
 	http.HandleFunc("/home", homeHandler) // utilise func homeHandler pour accèder a l'url /home
-	http.ListenAndServe(":8080", nil)     // ecoute sur le port 8080,  est un gestionnaire de route
+	fmt.Println(wordtoFind)
+	// ici requete post
+	http.ListenAndServe(":8080", nil) // ecoute sur le port 8080,  est un gestionnaire de route
 
 }
 
@@ -50,5 +51,4 @@ func homeHandler(w http.ResponseWriter, r *http.Request) { // gère les routes d
 	usedLetter = append(usedLetter, Letter)
 
 	hangman_classic.IsInputOk(Letter, word, wordtoFind, &usedLetter) // & permet d'utiliser un pointeur pour avoir les lettres dans tout le programme
-	fmt.Println(Letter)
 }

@@ -2,6 +2,8 @@ package main
 
 import (
 	"fmt"
+	"net/http"
+	"text/template"
 
 	hangman_classic "github.com/sinjin314/hangman-classic"
 )
@@ -14,18 +16,17 @@ type Page struct {
 	Valeur string
 }
 
-//var templates = template.Must(template.ParseFiles("index.html")) // utiliser pour parser (analyse le contenu du fichier)
+var templates = template.Must(template.ParseFiles("index.html")) // utiliser pour parser (analyse le contenu du fichier)
 
 func main() { // gestion URL
-	fmt.Println("avant handle")
+
 	word := openWordsList()
 	wordtoFind = hangman_classic.CreateWord(word)
 	fmt.Println(wordtoFind)
-	
 
-	//http.HandleFunc("/home", homeHandler) // utilise func homeHandler pour accèder a l'url /home
-	//http.ListenAndServe(":8080", nil)     // ecoute sur le port 8080,  est un gestionnaire de route
-	//fmt.Println("après handle")
+	http.HandleFunc("/home", homeHandler) // utilise func homeHandler pour accèder a l'url /home
+	http.ListenAndServe(":8080", nil)     // ecoute sur le port 8080,  est un gestionnaire de route
+
 }
 
 /*
@@ -33,7 +34,7 @@ func main() { // gestion URL
 #		⬇ GERE LES DEMANDES DE L'UTILISATEUR         #
 ######################################################
 */
-/*
+
 func homeHandler(w http.ResponseWriter, r *http.Request) { // gère les routes de l'application en indiquant à l'application que lorsque l'utilisateur accède à l'URL "/home", la fonction homeHandler doit être utilisée pour gérer sa demande.
 
 	p := Page{Valeur: wordtoFind}
@@ -47,8 +48,7 @@ func homeHandler(w http.ResponseWriter, r *http.Request) { // gère les routes d
 	//fmt.Println(Letter)
 
 	usedLetter = append(usedLetter, Letter)
-	fmt.Println("pendant handle")
-	hangman_classic.IsInputOk(Letter, word, wordtoFind, &usedLetter) // & permet d'utiliser un pointeur pour avoir les lettres dans tout le programme
 
+	hangman_classic.IsInputOk(Letter, word, wordtoFind, &usedLetter) // & permet d'utiliser un pointeur pour avoir les lettres dans tout le programme
+	fmt.Println(Letter)
 }
-*/

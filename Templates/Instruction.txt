@@ -41,9 +41,9 @@ Objectif : prendre le code est essayer d'importer les functions dans hangman web
 
 
 
+Utiliser une méthode asynchrone : permet de gérer plusieurs tache en meme temps 
 
-
-
+homeHandler est bloquante
 
 
 

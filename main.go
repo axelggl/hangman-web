@@ -25,7 +25,7 @@ func main() { // gestion URL
 	wordtoFind = hangman_classic.CreateWord(word)
 	http.HandleFunc("/home", homeHandler) // utilise func homeHandler pour accèder a l'url /home
 	fmt.Println(wordtoFind)
-	// ici requete post
+	// déclarer toute tes routes : par rapport a gérer les requetes, 
 	http.ListenAndServe(":8080", nil) // ecoute sur le port 8080,  est un gestionnaire de route
 
 }
@@ -45,7 +45,7 @@ func homeHandler(w http.ResponseWriter, r *http.Request) { // gère les routes d
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		fmt.Fprintf(w, "ParseForm() err: %v", err) // gere les erreurs
 	}
-	Letter := r.FormValue("Letter") // attribue la variable au formulaire name
+	Letter := r.FormValue("Letter") // attribue la variable au formulaire Lettre
 	//fmt.Println(Letter)
 
 	usedLetter = append(usedLetter, Letter)

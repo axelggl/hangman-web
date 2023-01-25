@@ -4,8 +4,9 @@ import (
 	"fmt"
 	"net/http"
 	"text/template"
+	
 
-	hangman_classic "github.com/sinjin314/hangman-classic"
+	
 )
 
 var wordtoFind string // Attention à utiliser précausionneusement car si 2 joueurs jouent en même temps il verront ce que font les autres.
@@ -16,13 +17,14 @@ type Page struct {
 	Valeur string
 }
 
+
 var templates = template.Must(template.ParseFiles("index.html")) // utiliser pour parser (analyse le contenu du fichier)
 
 func main() { // gestion URL
-
+	hangman()
 	word := openWordsList()
 	fmt.Println(word)
-	wordtoFind = hangman_classic.CreateWord(word)
+	// cutWord(word)
 	http.HandleFunc("/home", homeHandler) // utilise func homeHandler pour accèder a l'url /home
 	fmt.Println(wordtoFind)
 	// ici requete post
@@ -50,10 +52,6 @@ func homeHandler(w http.ResponseWriter, r *http.Request) { // gère les routes d
 
 	usedLetter = append(usedLetter, Letter)
 
-	hangman_classic.IsInputOk(Letter, word, wordtoFind, &usedLetter) // & permet d'utiliser un pointeur pour avoir les lettres dans tout le programme
-
-	fmt.Println(Letter)
-	fmt.Println(word)
-	fmt.Println(wordtoFind)
+	
 
 }

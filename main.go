@@ -16,6 +16,11 @@ var (
 	wordonrune     []rune
 )
 
+/*
+#########################################################
+# Structure pour afficher le mot sur la page à afficher #
+########################################################
+*/
 type Page struct {
 	Valeur string
 }
@@ -28,7 +33,6 @@ func main() { // gestion URL
 	structureArray = cutWord()
 	i := randomInt(structureArray, wordonrune)
 	structureArray = i
-	printWOOORD()
 
 	http.HandleFunc("/", homeHandler) // utilise func homeHandler pour accèder a l'url /home
 	// déclarer toute tes routes : par rapport a gérer les requetes,
@@ -44,14 +48,15 @@ func postHandler(w http.ResponseWriter, r *http.Request) {
 
 }
 
-// #######################################################
-// #		⬇ GERE LES DEMANDES DE L'UTILISATEUR         #
-// ######################################################
-
+/*
+#######################################################
+#		⬇ GERE LES DEMANDES DE L'UTILISATEUR        #
+######################################################
+*/
 func homeHandler(w http.ResponseWriter, r *http.Request) { // gère les routes de l'application en indiquant à l'application que lorsque l'utilisateur accède à l'URL "/home", la fonction homeHandler doit être utilisée pour gérer sa demande.
 	// printWOOORD(structureArray)
-	word := printWOOORD()
-	p := Page{Valeur: word}
+	a := printtheWord()
+	p := Page{Valeur: a}
 	err := templates.ExecuteTemplate(w, "index.html", p) // prépare la réponse
 
 	if err != nil {
@@ -65,37 +70,33 @@ func homeHandler(w http.ResponseWriter, r *http.Request) { // gère les routes d
 }
 
 /*
-func getHandler(w http.ResponseWriter, r *http.Request) {
-
-		//Match r.URL.path here as required using switch/use regex on it
-	}
-
-func postHandler(w http.ResponseWriter, r *http.Request) {
-
-	//Regex as needed on r.URL.Path
-	//and then get the values POSTed
-
-}
-//
+#######################################################
+#		⬇ Permet d'afficher le mot sur la page       #
+######################################################
 */
-func printWOOORD() string {
+func printtheWord() string {
 
-	temp3 := []string{}
+	wordArray := []string{} // on vient définir notre mot dans un tableau de string
 
-	temp := []rune(word)
-	for i := 0; i < len(temp); i++ {
+	wordRune := []rune(word) // découpe le mot pour pouvoir l'implémenter
+	for i := 0; i < len(wordRune); i++ {
 		if structureArray[i].isvisible == true { // si lettre == true :
-			temp3 = append(temp3, string(temp[i]))
+			wordArray = append(wordArray, string(wordRune[i])) // on ajoute a notre tableau de string la lettre trouvée
 
 		} else if structureArray[i].isvisible == false { // sinon affiche "_"
 
 			temp2 := '_'
-			temp3 = append(temp3, string(temp2))
+			wordArray = append(wordArray, string(temp2)) // on ajoute un _ si la lettre est fausse
 
 		}
 	}
-	sep := " "
-	result := strings.Join(temp3, sep)
-	return result
+	/*
+		#######################################################
+		#	⬇ Permet de transformer le mot en une string    #
+		######################################################
+	*/
+
+	result := strings.Join(wordArray, " ")
+	return result // retourne le résultat en une string car le serveur veut une STRING
 
 }

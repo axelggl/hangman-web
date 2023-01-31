@@ -36,6 +36,7 @@ func main() { // gestion URL
 
 	http.HandleFunc("/", homeRequestHandler) // utilise func homeHandler pour accèder a l'url /home
 	// déclarer toute tes routes : par rapport a gérer les requetes,
+	fmt.Println("Localhost fonctionnel.")
 	http.ListenAndServe(":8080", nil) // ecoute sur le port 8080,  est un gestionnaire de route
 }
 

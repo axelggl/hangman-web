@@ -39,7 +39,7 @@ func hangman() {
 			printWord(StrucArray, []rune(word)) // si oui affiche le mot
 			fmt.Println("\n")
 			fmt.Println("BRAVOOO vous avez trouvé le mot :", word)
-			fmt.Printf("En %d essais, c'est pas mal :P", i) // Un message de bienveillance
+			fmt.Printf("En %d essais, c'est pas mal :P", i,) // Un message de bienveillance
 			fmt.Println("\n")
 			break
 		}

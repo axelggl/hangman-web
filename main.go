@@ -76,6 +76,7 @@ func postHome(w http.ResponseWriter, r *http.Request) {
 
     r.ParseForm() // parse le formulaire
     myLetter := r.FormValue("text") // prend la valeur du formulaire
+
     //fmt.Fprint(w, "method post") // le code vient ici pour le traitement de la lettre ect.
     p := Page{Valeur: printtheWord()} // Pour le mot sur le site
 
@@ -108,11 +109,11 @@ func printtheWord() string {
 
 		}
 	}
-	/*
-		#######################################################
-		#	⬇ Permet de transformer le mot en une string    #
-		######################################################
-	*/
+/*
+######################################################
+#	⬇ Permet de transformer le mot en une string    #
+######################################################
+*/
 
 	result := strings.Join(wordArray, " ")
 	return result // retourne le résultat en une string car le serveur veut une STRING

@@ -1,3 +1,5 @@
 extérieur
 fenêtre
 intérieur
+lit
+voiture

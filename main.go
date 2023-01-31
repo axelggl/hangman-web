@@ -38,46 +38,6 @@ func main() { // gestion URL
 	// déclarer toute tes routes : par rapport a gérer les requetes,
 	http.ListenAndServe(":8080", nil) // ecoute sur le port 8080,  est un gestionnaire de route
 }
-/*
-func postHandler(w http.ResponseWriter, r *http.Request) {
-
-	//Regex as needed on r.URL.Path
-	//and then get the values POSTed
-	Letter := r.FormValue("Letter")
-	fmt.Println(Letter)
-
-}
-*/
-
-/*
-#######################################################
-#		⬇ GERE LES DEMANDES DE L'UTILISATEUR        #
-######################################################
-*/
-
-
-/*
-func homeHandler(w http.ResponseWriter, r *http.Request) { // gère les routes de l'application en indiquant à l'application que lorsque l'utilisateur accède à l'URL "/home", la fonction homeHandler doit être utilisée pour gérer sa demande.
-	// printWOOORD(structureArray)
-	a := printtheWord()
-	p := Page{Valeur: a}
-	err := templates.ExecuteTemplate(w, "index.html", p) // prépare la réponse
-
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		fmt.Fprintf(w, "ParseForm() err: %v", err) // gere les erreurs
-	}
-	Letter := r.FormValue("Letter") // attribue la variable au formulaire Lettre
-	// fmt.Println(Letter)
-	usedLetter = append(usedLetter, Letter)
-	fmt.Println(Letter)
-}
-*/
-
-
-
-
-
 
 // fonction qui vas utiliser la bonne fonction pour les méthodes http appeler par l'interface web
 func homeRequestHandler(w http.ResponseWriter, r *http.Request) {
@@ -126,12 +86,6 @@ func postHome(w http.ResponseWriter, r *http.Request) {
     fmt.Println(text)
 	fmt.Println(myLetter)
 }
-
-
-
-
-
-
 /*
 #######################################################
 #		⬇ Permet d'afficher le mot sur la page       #

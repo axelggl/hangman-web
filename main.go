@@ -71,13 +71,14 @@ func errorHandler(w http.ResponseWriter, r *http.Request, status int) { // fonct
         fmt.Fprint(w, "custom 404") // renvoi custom 404
     }
 }
-
+/*
 func postHome(w http.ResponseWriter, r *http.Request) {
 
     r.ParseForm() // récupère les informations du formulaire dans la requête post
     myLetter := r.FormValue("text") // prend la valeur du formulaire
 	runeLetter := []rune(myLetter)
-	for i := 0; i < len(word); i++ { // cette boucle permet de vérifier si notre rune est présente
+	fmt.Println(runeLetter)
+	for i := 0; i < len(myLetter); i++ { // cette boucle permet de vérifier si notre rune est présente
 		if structureArray[i].Lettre == runeLetter[0] {
 		 structureArray[i].isvisible = true  // si c'est la meme alors la case devient vrai
 			for o := 0; o < len(word); o++ { // pour lettre en 2x
@@ -87,6 +88,7 @@ func postHome(w http.ResponseWriter, r *http.Request) {
 			}
 		}
 	}
+	fmt.Println(structureArray)
     //fmt.Fprint(w, "method post") // le code vient ici pour le traitement de la lettre ect.
     p := Page{Valeur: printtheWord()} // Pour le mot sur le site
 
@@ -94,9 +96,49 @@ func postHome(w http.ResponseWriter, r *http.Request) {
     if err != nil {
         http.Error(w, err.Error(), http.StatusInternalServerError) // si erreur précise erreur
     }
+}
+*/
+func postHome(w http.ResponseWriter, r *http.Request) {
+
+    r.ParseForm()                   // parse le formulaire
+    myLetter := r.FormValue("text") // prend la valeur du formulaire
+    //fmt.Fprint(w, "method post") // le code vient ici pour le traitement de la lettre ect.
+
     text := r.FormValue("text") // sinon écrit la page
-    fmt.Println(text)
-	fmt.Println(myLetter)
+    fmt.Println([]rune(text))
+
+    A := []rune(myLetter) // on met input en string en rune
+    for i := 0; i < len(structureArray); i++ {
+        if structureArray[i].Lettre == A[0] { // regarde si input est dans le mot
+            structureArray[i].isvisible = true // si c dans le mot isvisible devient vrai
+            for o := 0; o < len(structureArray); o++ {
+                if structureArray[i].Lettre == structureArray[o].Lettre { // pour les doublons
+                    structureArray[o].isvisible = true
+                }
+            }
+            fmt.Println(structureArray)
+        } // else if A[0] != structureArray[i].Lettre { // si input n'appartient pas au mot
+
+        // }
+    }
+
+    array2 := []string{}
+    array := []rune(wordtofind) //tableau de structure avec mot aléatoire
+    for i := 0; i < len(array); i++ {
+        if structureArray[i].isvisible == true { // si condition de structure est vrai alors écrit la lettre
+            array2 = append(array2, string(array[i])) // rajoute à array2 le contenue du tableau de structure
+        } else if structureArray[i].isvisible == false { //sinon
+            array3 := ""                         // écrit  pour cacher la lettre
+            array2 = append(array2, string(array3)) // et remplace la case dans tableau 2 par _
+        }
+    }
+    p := Page{Valeur: printword()} // Pour le mot sur le site
+
+    //renvoi le tableau de string en string grace à library join
+    err := templates.ExecuteTemplate(w, "index.html", p) //executer le code html
+    if err != nil {
+        http.Error(w, err.Error(), http.StatusInternalServerError) // si erreur précise erreur
+    }
 }
 /*
 #######################################################

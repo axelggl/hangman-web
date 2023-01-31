@@ -15,21 +15,21 @@ Envoie une réponse HTML - la page principale, elle affichera essentiellement vo
 
 Si on récapitule : 
 
-1 ) On a commencer par savoir comment crée un serveur en golang
+1 ) On a commencé par savoir comment créer un serveur en golang
 
-2 ) On a chercher à avoir une variable dans Go que l'on peut modifier et qui s'affiche dans la page html
+2 ) On a cherché à avoir une variable dans Go que l'on peut modifier et qui s'affiche dans la page html
 
-3 ) On a chercher comment faire une requêt Post
+3 ) On a cherché comment faire une requête Post
 
-4 ) Pour savoir si cette variable et bien prise en compte : on l'affiche dans le terminal
+4 ) Pour savoir si cette variable est bien prise en compte : on l'affiche dans le terminal
 
-5 ) ensuite a chaque fois que je faisais une requete le mot changer
+5 ) ensuite à chaque fois que je faisais une requete le mot changeait
 
-6 ) on a donc crée une variable Globale : Elle est donc accessible depuis n'importe quelle fonction dans le programme, ce qui signifie qu'elle peut être lue et modifiée par toutes les fonctions.
-
+6 ) on a donc créé une variable globale : elle est donc accessible depuis n'importe quelle fonction dans le programme,
+ce qui signifie qu'elle peut être lue et modifiée par toutes les fonctions,
 elle contient donc le mot et il pourra être changer a chaque fois
 
-7 ) Idée : Variable globale avec un tableau de structure ducoup ? 
+7 ) Idée : Variable globale avec un tableau de structure du coup ? 
 
 
 
@@ -37,11 +37,11 @@ elle contient donc le mot et il pourra être changer a chaque fois
 IDée css https://freefrontend.com/css-animated-backgrounds/
 
 
-Objectif : prendre le code est essayer d'importer les functions dans hangman web
+Objectif : prendre le code et essayer d'importer les functions dans hangman web
 
 
 
-Utiliser une méthode asynchrone : permet de gérer plusieurs tache en meme temps 
+Utiliser une méthode asynchrone : permet de gérer plusieurs tâches en même temps 
 
 homeHandler est bloquante
 
@@ -49,9 +49,9 @@ homeHandler est bloquante
 
 
 
-IDée
-Ajoutez une fonction pour vérifier si le mot à deviner a déjà été deviné dans une partie précédente pour éviter de jouer plusieurs fois au même mot.
-Ajoutez une fonction pour sauvegarder les scores et les statistiques pour chaque joueur.
-Ajoutez la possibilité de choisir la difficulté du jeu en sélectionnant un nombre différent d'essais autorisés pour deviner le mot.
-Ajoutez une fonction pour afficher les lettres déjà utilisées et les mots déjà devinés.
-Ajoutez des fonctions pour gérer les entrées utilisateur pour éviter les erreurs (comme la saisie d'un caractère qui n'est pas une lettre).
+Idée
+Ajouter une fonction pour vérifier si le mot à deviner a déjà été deviné dans une partie précédente pour éviter de jouer plusieurs fois au même mot.
+Ajouter une fonction pour sauvegarder les scores et les statistiques pour chaque joueur.
+Ajouter la possibilité de choisir la difficulté du jeu en sélectionnant un nombre différent d'essais autorisés pour deviner le mot.
+Ajouter une fonction pour afficher les lettres déjà utilisées et les mots déjà devinés.
+Ajouter des fonctions pour gérer les entrées utilisateur pour éviter les erreurs (comme la saisie d'un caractère qui n'est pas une lettre).

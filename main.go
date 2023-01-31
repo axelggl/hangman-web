@@ -74,9 +74,19 @@ func errorHandler(w http.ResponseWriter, r *http.Request, status int) { // fonct
 
 func postHome(w http.ResponseWriter, r *http.Request) {
 
-    r.ParseForm() // parse le formulaire
+    r.ParseForm() // récupère les informations du formulaire dans la requête post
     myLetter := r.FormValue("text") // prend la valeur du formulaire
-
+	runeLetter := []rune(myLetter)
+	for i := 0; i < len(word); i++ { // cette boucle permet de vérifier si notre rune est présente
+		if structureArray[i].Lettre == runeLetter[0] {
+		 structureArray[i].isvisible = true  // si c'est la meme alors la case devient vrai
+			for o := 0; o < len(word); o++ { // pour lettre en 2x
+				if structureArray[i].Lettre == structureArray[o].Lettre {
+				 structureArray[o].isvisible = true
+				}
+			}
+		}
+	}
     //fmt.Fprint(w, "method post") // le code vient ici pour le traitement de la lettre ect.
     p := Page{Valeur: printtheWord()} // Pour le mot sur le site
 

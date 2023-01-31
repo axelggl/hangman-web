@@ -34,11 +34,11 @@ func main() { // gestion URL
 	i := randomInt(structureArray, wordonrune)
 	structureArray = i
 
-	http.HandleFunc("/", homeHandler) // utilise func homeHandler pour accèder a l'url /home
+	http.HandleFunc("/", homeRequestHandler) // utilise func homeHandler pour accèder a l'url /home
 	// déclarer toute tes routes : par rapport a gérer les requetes,
 	http.ListenAndServe(":8080", nil) // ecoute sur le port 8080,  est un gestionnaire de route
 }
-
+/*
 func postHandler(w http.ResponseWriter, r *http.Request) {
 
 	//Regex as needed on r.URL.Path
@@ -47,12 +47,16 @@ func postHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(Letter)
 
 }
+*/
 
 /*
 #######################################################
 #		⬇ GERE LES DEMANDES DE L'UTILISATEUR        #
 ######################################################
 */
+
+
+/*
 func homeHandler(w http.ResponseWriter, r *http.Request) { // gère les routes de l'application en indiquant à l'application que lorsque l'utilisateur accède à l'URL "/home", la fonction homeHandler doit être utilisée pour gérer sa demande.
 	// printWOOORD(structureArray)
 	a := printtheWord()
@@ -68,6 +72,65 @@ func homeHandler(w http.ResponseWriter, r *http.Request) { // gère les routes d
 	usedLetter = append(usedLetter, Letter)
 	fmt.Println(Letter)
 }
+*/
+
+
+
+
+
+
+// fonction qui vas utiliser la bonne fonction pour les méthodes http appeler par l'interface web
+func homeRequestHandler(w http.ResponseWriter, r *http.Request) {
+    if r.Method == "GET" {
+        getHome(w, r)
+        fmt.Println("get")
+    } else if r.Method == "POST" {
+        fmt.Println("post")
+        postHome(w, r)
+    } else {
+        errorHandler(w, r, 404)
+    }
+}
+
+func getHome(w http.ResponseWriter, r *http.Request) { // envoie une requête a /home, crée avec la struc Page et est modif avec A
+
+    p := Page{Valeur: printtheWord()} // Pour le mot sur le site
+
+    myHtml := templates.ExecuteTemplate(w, "index.html", p) //executer le code html
+    if myHtml != nil {
+        http.Error(w, myHtml.Error(), http.StatusInternalServerError) // si erreur précise erreur
+    }
+    
+    fmt.Println(myHtml)
+}
+
+func errorHandler(w http.ResponseWriter, r *http.Request, status int) { // fonction qui prévient autre type d'erreur
+    w.WriteHeader(status)              // cherche le status
+    if status == http.StatusNotFound { //si status est :
+        fmt.Fprint(w, "custom 404") // renvoi custom 404
+    }
+}
+
+func postHome(w http.ResponseWriter, r *http.Request) {
+
+    r.ParseForm() // parse le formulaire
+    myLetter := r.FormValue("text") // prend la valeur du formulaire
+    //fmt.Fprint(w, "method post") // le code vient ici pour le traitement de la lettre ect.
+    p := Page{Valeur: printtheWord()} // Pour le mot sur le site
+
+    err := templates.ExecuteTemplate(w, "index.html", p) //executer le code html
+    if err != nil {
+        http.Error(w, err.Error(), http.StatusInternalServerError) // si erreur précise erreur
+    }
+    text := r.FormValue("text") // sinon écrit la page
+    fmt.Println(text)
+	fmt.Println(myLetter)
+}
+
+
+
+
+
 
 /*
 #######################################################

@@ -114,7 +114,7 @@ func postHome(w http.ResponseWriter, r *http.Request) {
 #		⬇ Permet d'afficher le mot sur la page       #
 ######################################################
 */
-func printtheWord() string {
+func printTheWord() string {
 
 	wordArray := []string{} // on vient définir notre mot dans un tableau de string
 

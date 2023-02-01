@@ -40,74 +40,74 @@ func main() { // gestion URL
 
 // fonction qui va utiliser la bonne fonction pour les méthodes http appelées par l'interface web
 func homeRequestHandler(w http.ResponseWriter, r *http.Request) {
-    if r.Method == "GET" {
-        getHome(w, r)
-        fmt.Println("get")
-    } else if r.Method == "POST" {
-        fmt.Println("post")
-        postHome(w, r)
-    } else {
-        errorHandler(w, r, 404)
-    }
+	if r.Method == "GET" {
+		getHome(w, r)
+		fmt.Println("get")
+	} else if r.Method == "POST" {
+		fmt.Println("post")
+		postHome(w, r)
+	} else {
+		errorHandler(w, r, 404)
+	}
 }
 
 func getHome(w http.ResponseWriter, r *http.Request) { // envoie une requête a /, récupère le contenu de la page
 
-    p := Page{Valeur: printtheWord()} // Pour le mot à trouver sur le site
+	p := Page{Valeur: printTheWord()} // Pour le mot à trouver sur le site
 
-    myHtml := templates.ExecuteTemplate(w, "index.html", p) // exécuter le code html
-    if myHtml != nil {
-        http.Error(w, myHtml.Error(), http.StatusInternalServerError) // si erreur précise erreur
-    }
-    
-    fmt.Println(myHtml)
+	myHtml := templates.ExecuteTemplate(w, "index.html", p) // exécuter le code html
+	if myHtml != nil {
+		http.Error(w, myHtml.Error(), http.StatusInternalServerError) // si erreur précise erreur
+	}
+
+	fmt.Println(myHtml)
 }
 
 func errorHandler(w http.ResponseWriter, r *http.Request, status int) { // fonction qui prévient autre type d'erreur
-    w.WriteHeader(status)              // cherche le status
-    if status == http.StatusNotFound { // si status est :
-        fmt.Fprint(w, "custom 404") // renvoie custom 404
-    }
+	w.WriteHeader(status)              // cherche le status
+	if status == http.StatusNotFound { // si status est :
+		fmt.Fprint(w, "custom 404") // renvoie custom 404
+	}
 }
 
 func postHome(w http.ResponseWriter, r *http.Request) {
 
-    r.ParseForm()                   // parse le formulaire
-    myLetter := r.FormValue("text") // prend la valeur du formulaire
-    // le code suivant permet de modifier le mot en fonction de la lettre rentrée
-    text := r.FormValue("text") // sinon écrit la page
-    fmt.Println([]rune(text))
+	r.ParseForm()                   // parse le formulaire
+	myLetter := r.FormValue("text") // prend la valeur du formulaire
+	// le code suivant permet de modifier le mot en fonction de la lettre rentrée
+	text := r.FormValue("text") // sinon écrit la page
+	fmt.Println([]rune(text))
 
-    A := []rune(myLetter) // on met input en string en rune
-    for i := 0; i < len(structureArray); i++ {
-        if structureArray[i].Lettre == A[0] { // regarde si input est dans le mot
-            structureArray[i].isvisible = true // si c'est dans le mot isvisible devient vrai
-            for o := 0; o < len(structureArray); o++ {
-                if structureArray[i].Lettre == structureArray[o].Lettre { // pour les doublons
-                    structureArray[o].isvisible = true
-                }
-            }
-            fmt.Println(structureArray)
-        } 
-    }
+	A := []rune(myLetter) // on met input en string en rune
+	for i := 0; i < len(structureArray); i++ {
+		if structureArray[i].Lettre == A[0] { // regarde si input est dans le mot
+			structureArray[i].isvisible = true // si c'est dans le mot isvisible devient vrai
+			for o := 0; o < len(structureArray); o++ {
+				if structureArray[i].Lettre == structureArray[o].Lettre { // pour les doublons
+					structureArray[o].isvisible = true
+				}
+			}
+			fmt.Println(structureArray)
+		}
+	}
 
-    array2 := []string{}
-    array := []rune(word) //tableau de structure avec mot aléatoire
-    for i := 0; i < len(array); i++ {
-        if structureArray[i].isvisible == true { // si condition de structure est vraie alors écrit la lettre
-            array2 = append(array2, string(array[i])) // rajoute à array2 le contenu du tableau de structure
-        } else if structureArray[i].isvisible == false { //sinon
-            array3 := ""                         // écrit  pour cacher la lettre
-            array2 = append(array2, string(array3)) // et remplace la case dans tableau 2 par _
-        }
-    }
-    p := Page{Valeur: printtheWord()} // Pour le mot sur le site
+	array2 := []string{}
+	array := []rune(word) //tableau de structure avec mot aléatoire
+	for i := 0; i < len(array); i++ {
+		if structureArray[i].isvisible == true { // si condition de structure est vraie alors écrit la lettre
+			array2 = append(array2, string(array[i])) // rajoute à array2 le contenu du tableau de structure
+		} else if structureArray[i].isvisible == false { //sinon
+			array3 := ""                            // écrit  pour cacher la lettre
+			array2 = append(array2, string(array3)) // et remplace la case dans tableau 2 par _
+		}
+	}
+	p := Page{Valeur: printTheWord()} // Pour le mot sur le site
 
-    //renvoie le tableau de string en string grace à library join
-    err := templates.ExecuteTemplate(w, "index.html", p) //exécuter le code html
-    if err != nil {
-        http.Error(w, err.Error(), http.StatusInternalServerError) // si erreur précise erreur
-    }
+	//renvoie le tableau de string en string grace à library join
+	err := templates.ExecuteTemplate(w, "index.html", p) //exécuter le code html
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError) // si erreur précise erreur
+	}
 }
 /*
 #######################################################
@@ -130,11 +130,11 @@ func printTheWord() string {
 
 		}
 	}
-/*
-######################################################
-#	⬇ Permet de transformer le mot en une string    #
-######################################################
-*/
+	/*
+	   ######################################################
+	   #	⬇ Permet de transformer le mot en une string    #
+	   ######################################################
+	*/
 
 	result := strings.Join(wordArray, " ")
 	return result // retourne le résultat en une string car le serveur veut une STRING

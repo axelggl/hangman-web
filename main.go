@@ -123,7 +123,7 @@ func postHome(w http.ResponseWriter, r *http.Request) {
     }
 
     array2 := []string{}
-    array := []rune(wordtofind) //tableau de structure avec mot aléatoire
+    array := []rune(word) //tableau de structure avec mot aléatoire
     for i := 0; i < len(array); i++ {
         if structureArray[i].isvisible == true { // si condition de structure est vrai alors écrit la lettre
             array2 = append(array2, string(array[i])) // rajoute à array2 le contenue du tableau de structure
@@ -132,7 +132,7 @@ func postHome(w http.ResponseWriter, r *http.Request) {
             array2 = append(array2, string(array3)) // et remplace la case dans tableau 2 par _
         }
     }
-    p := Page{Valeur: printword()} // Pour le mot sur le site
+    p := Page{Valeur: printtheWord()} // Pour le mot sur le site
 
     //renvoi le tableau de string en string grace à library join
     err := templates.ExecuteTemplate(w, "index.html", p) //executer le code html
